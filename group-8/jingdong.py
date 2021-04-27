@@ -20,7 +20,7 @@ def get_one_page(url):
 html = get_one_page(url)
 choose=etree.HTML(html)
 f = open('jingdong.csv','w',newline='' ,encoding='utf-8-sig')
-filedname = ['书名','价格','出版社']
+filedname = ['name','price','publication']
 writer = csv.DictWriter(f, fieldnames=filedname)
 writer.writeheader()
 
@@ -32,9 +32,9 @@ chuban = choose.xpath('//*[@id="J_goodsList"]/ul/li/div/div[6]/a/text()')
 print(chuban)
 for i in range(10):
         sings= {
-            '书名': name[i],
-            '价格': price[i],
-            '出版社': chuban[i]
+            'name': name[i],
+            'price': price[i],
+            'publication': chuban[i]
         }
         print(sings)
         writer.writerow(sings)
